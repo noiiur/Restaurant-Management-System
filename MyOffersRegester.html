@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyOffers Website</title>
+    <link rel="stylesheet" href="MyOffers.css">
+    <link rel="stylesheet" href="MyOffersRegester.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* إضافة أنماط للتحقق من الصحة */
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .error-message {
+            color: #ff3860;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        input.error {
+            border-color: #ff3860;
+            background-color: #fff5f5;
+        }
+        
+        input.valid {
+            border-color: #09c372;
+            background-color: #f5fff9;
+        }
+        
+        .password-hint {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .show-password {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تعريف التعابير النمطية (Regex)
+            const nameRegex = /^[a-zA-Z\u0600-\u06FF\s]{2,}$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+            const mobileRegex = /^(05|5|9665)\d{8}$/;
+            
+            // عناصر النموذج
+            const form = document.form1;
+            const inputs = form.querySelectorAll('input');
+            
+            // إضافة مستمعين للأحداث لكل حقل إدخال
+            inputs.forEach(input => {
+                input.addEventListener('blur', validateField);
+                input.addEventListener('input', clearError);
+                
+                // خاصية إظهار/إخفاء كلمة المرور
+                if (input.id === 'password') {
+                    const showPassword = document.createElement('i');
+                    showPassword.className = 'bx bx-hide show-password';
+                    showPassword.addEventListener('click', togglePasswordVisibility);
+                    input.parentNode.appendChild(showPassword);
+                    
+                    // إضافة تلميح لكلمة المرور
+                    const passwordHint = document.createElement('div');
+                    passwordHint.className = 'password-hint';
+                    passwordHint.textContent = 'يجب أن تحتوي على 8 أحرف على الأقل وتشمل حروفًا وأرقامًا';
+                    input.parentNode.appendChild(passwordHint);
+                    
+                    input.addEventListener('focus', function() {
+                        passwordHint.style.display = 'block';
+                    });
+                    
+                    input.addEventListener('blur', function() {
+                        passwordHint.style.display = 'none';
+                    });
+                }
+            });
+            
+            // تعديل دالة إرسال النموذج
+            form.onsubmit = function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                inputs.forEach(input => {
+                    if (!validateField({ target: input })) {
+                        isValid = false;
+                    }
+                });
+                
+                if (isValid) {
+                    const confirmation = confirm("تم إدخال البيانات بشكل صحيح، هل تريد إرسال النموذج؟");
+                    if (confirmation) {
+                        form.submit();
+                    }
+                }
+            };
+            
+            // وظيفة التحقق من الحقل
+            function validateField(e) {
+                const field = e.target;
+                const value = field.value.trim();
+                const errorElement = field.nextElementSibling;
+                
+                // تخطي العناصر التي ليست رسائل خطأ
+                while (errorElement && !errorElement.classList.contains('error-message')) {
+                    errorElement = errorElement.nextElementSibling;
+                }
+                
+                let isValid = true;
+                let errorMessage = '';
+                
+                if (value === '') {
+                    errorMessage = 'هذا الحقل مطلوب';
+                    isValid = false;
+                } else {
+                    switch(field.id) {
+                        case 'firstName':
+                        case 'lastName':
+                            if (!nameRegex.test(value)) {
+                                errorMessage = 'يجب أن يحتوي على أحرف فقط (حرفين على الأقل)';
+                                isValid = false;
+                            }
+                            break;
+                        case 'email':
+                            if (!emailRegex.test(value)) {
+                                errorMessage = 'بريد إلكتروني غير صالح';
+                                isValid = false;
+                            }
+                            break;
+                        case 'password':
+                            if (!passwordRegex.test(value)) {
+                                errorMessage = 'يجب أن تحتوي على 8 أحرف على الأقل وتشمل حروفًا وأرقامًا';
+                                isValid = false;
+                            }
+                            break;
+                        case 'address':
+                            if (value.length < 5) {
+                                errorMessage = 'العنوان قصير جدًا (5 أحرف على الأقل)';
+                                isValid = false;
+                            }
+                            break;
+                        case 'mobile':
+                            if (!mobileRegex.test(value)) {
+                                errorMessage = 'يجب أن يبدأ بـ 05 أو 5 أو 9665 ويحتوي على 10 أرقام';
+                                isValid = false;
+                            }
+                            break;
+                    }
+                }
+                
+                // تحديث حالة الحقل
+                if (errorElement) {
+                    if (!isValid) {
+                        field.classList.add('error');
+                        field.classList.remove('valid');
+                        errorElement.textContent = errorMessage;
+                        errorElement.style.display = 'block';
+                    } else {
+                        field.classList.add('valid');
+                        field.classList.remove('error');
+                        errorElement.style.display = 'none';
+                    }
+                }
+                
+                return isValid;
+            }
+            
+            // وظيفة مسح الخطأ عند البدء بالكتابة
+            function clearError(e) {
+                const field = e.target;
+                const errorElement = field.nextElementSibling;
+                
+                // تخطي العناصر التي ليست رسائل خطأ
+                while (errorElement && !errorElement.classList.contains('error-message')) {
+                    errorElement = errorElement.nextElementSibling;
+                }
+                
+                if (errorElement) {
+                    field.classList.remove('error');
+                    errorElement.style.display = 'none';
+                }
+            }
+            
+            // وظيفة إظهار/إخفاء كلمة المرور
+            function togglePasswordVisibility(e) {
+                const icon = e.target;
+                const passwordInput = icon.previousElementSibling;
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('bx-hide');
+                    icon.classList.add('bx-show');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('bx-show');
+                    icon.classList.add('bx-hide');
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <h2>MyOffers</h2>
+    </div>
+    <div class="account">
+        <i class='bx bxs-user'></i>
+        <a href="#account">My Account</a>
+    </div>
+    <div class="bx bx-menu active" id="menu-icon"></div>
+</header>
+
+<nav>
+    <ul class="navbar">
+        <li><a href="MyOffers.php">Home</a></li>
+        <li><a href="MyOffersdescription.php">Food</a></li>
+        <li><a href="#auto">Auto</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h2><em>Register</em></h2>
+    <form name="form1" method="POST" action="insertregeter.php">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required>
+            <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required>
+            <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" required>
+            <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile</label>
+            <input type="text" id="mobile" name="mobile" required>
+            <div class="error-message"></div>
+        </div>
+        <button type="submit">REGISTER</button>
+    </form>
+</div>
+
+<section id="contact">
+    <div class="footer">
+        <div class="main">
+            <div class="col">
+                <ul>
+                    <h4>Information</h4>
+                    <li><a href="https://www.example.com/faq">FAQ</a></li>
+                    <li><a href="https://www.example.com/about">About Us</a></li>
+                    <li><a href="https://www.example.com/terms">Terms & Conditions</a></li>
+                    <li><a href="https://www.example.com/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h4>Our Service Area</h4>
+                <ul>
+                    <li><a href="https://maps.app.goo.gl/TwiquH1CKWSYRPwy9">Taif</a></li>
+                    <li><a href="https://maps.app.goo.gl/bnE7dLH98ZDMSxVg9">Riyadh</a></li>
+                    <li><a href="https://maps.app.goo.gl/fKzcXyV3VC3wZ6Qo9">Makkah</a></li>
+                    <li><a href="https://maps.app.goo.gl/GMVBNQ2RKkFsq5oU7">Jeddah</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h4>Contact Us</h4>
+                <div class="social">
+                    <a href="https://web.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
+                    <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
+                    <a href="https://x.com/?lang=en"><i class='bx bxl-twitter'></i></a>
+                    <a href="https://www.snapchat.com/"><i class='bx bxl-snapchat'></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="MyOffers.js"></script>
+</body>
+</html>

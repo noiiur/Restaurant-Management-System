@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyOffers Website</title>
+    <link rel="stylesheet" href="MyOffers.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,
+	800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <!-- نفس الهيدر من MyOffers.html -->
+    <title>Al Shallal Theme Park | MyOffers</title>
+    <link rel="stylesheet" href="MyOffersdescription.css">
+</head>
+<body>
+
+    
+
+    <!-- header start -->
+    <header>
+        <div class="logo">
+            <h2>MyOffers</h2>
+        </div>
+		<div class="search-box">
+        <input type="text" placeholder="search here...">
+        <i class="bx bx-search"></i>
+    </div>
+		<div class="account">
+		    <i class='bx bxs-user'></i> 
+            <a href="MyOffersRegester.html">My Account</a>
+        </div>
+        <div class="bx bx-menu active" id="menu-icon"></div>
+    </header>
+    <!-- header End -->
+
+    <nav>
+        <nav>
+            <ul class="navbar">
+              <li><a href="MyOffers.php">Home</a></li>
+              <li><a href="MyOffersdescription.php">Food</a></li>
+              <li><a href="#auto">Auto</a></li>           
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+    </nav>
+    <!-- نفس الهيدر والناڤ من MyOffers.html -->
+
+    <div class="container">
+        <section class="description">
+            <h1><em>أوركيدا | Orchidea
+            </em></h1>
+            <h2>Description</h2>
+            <p>طبق باستا إيطالي فاخر من مطعم "’MyOffers"، تورتيليني كريمية محشوة بالريكونتا، مغطاة بصلصة وبتلات أوركيد أرجوانية صالحة للأكل
+            </p>
+            
+            <div class="options">
+                <ul>
+                    <li>تنسيق زهري خلاب: بتلات الأوركيد الأرجوانية تشكل تباينًا جماليًا مع لون الباستا الكريمي.
+
+                    </li>
+                    <li>تقديم أنيق: الطبق يُقدم على خلفية من الرخام الأبيض مع أدوات مائدة ذهبية لإبراز الفخامة.
+
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="details">
+                <p><strong>Operating Hours:</strong> 10:00 AM - 11:00 PM</p>
+                <p><strong>Location:</strong> Jeddah, Saudi Arabia</p>
+            </div>
+        </section>
+
+        <section class="promoter-info">
+            <div class="image-placeholder">
+                <img src="أوركيدا.png" alt="أوركيدا | Orchidea
+                " style="max-width:100%">
+            </div>
+        </section>
+
+        <section class="pricing">
+            <div class="price-option">
+                <p class="price">
+                    <div class="offer-rating">★★★☆☆ (3.0)</div>
+                    <span class="original-price">SAR 120.00</span> 
+                    <span class="discounted-price">SAR 115.20</span>
+                </p>
+                <p class="discount">4% Discount</p>
+                <div class="quantity-selector">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1">
+                </div>
+            </div>
+        </section>
+
+        <section class="add-to-cart">
+            <button id="add-to-cart-btn">Add to Cart</button>
+        </section>
+    </div>
+
+    <!-- نفس الفوتر من MyOffers.html -->
+
+    <script>
+        document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+            const quantity = document.getElementById('quantity').value;
+            alert(`Added ${quantity} ticket(s) to your cart!`);
+        });
+    </script>
+
+<div class="footer">
+    <button onclick="window.location.href='MyOffers.php'" class="back-button">
+        عودة إلى التسوق
+    </button>
+</div>
+
+  
+    <!-- content End -->
+
+    <section id="contact">
+        <div class="footer">
+            <div class="main">
+				<div class="col">
+                    <ul>
+                        <h4>Information</h4>
+                        <li><a href="https://www.example.com/faq">FAQ</a></li>
+                        <li><a href="https://www.example.com/about">About Us</a></li>
+                        <li><a href="https://www.example.com/terms">Terms & Conditions</a></li>
+                        <li><a href="https://www.example.com/privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h4>Our Service Area</h4>
+                    <ul>
+					    <li><a href="https://maps.app.goo.gl/TwiquH1CKWSYRPwy9">Taif</a></li>
+						<li><a href="https://maps.app.goo.gl/bnE7dLH98ZDMSxVg9">Riyadh</a></li>
+                        <li><a href="https://maps.app.goo.gl/fKzcXyV3VC3wZ6Qo9">Makkah</a></li>
+                        <li><a href="https://maps.app.goo.gl/GMVBNQ2RKkFsq5oU7">Jeddah</a></li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h4>Contact Us</h4>
+                    <div class="social">
+                        <a href="https://web.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
+                        <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+						<a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
+                        <a href="https://x.com/?lang=en"><i class='bx bxl-twitter'></i></a>
+						<a href="https://www.snapchat.com/"><i class='bx bxl-snapchat'></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+   <script src="MyOffers.js"></script>
+  
+</body>
+</html>

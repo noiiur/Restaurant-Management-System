@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyOffers Website</title>
+    <link rel="stylesheet" href="MyOffers.css">
+    <link rel="stylesheet" href="MyOffersRegester.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+
+    <script>
+        function validateRegister() {
+            // الحصول على قيم الحقول
+            const firstName = document.form1.firstName.value.trim();
+            const lastName = document.form1.lastName.value.trim();
+            const email = document.form1.email.value.trim();
+            const password = document.form1.password.value;
+            const address = document.form1.address.value.trim();
+            const mobile = document.form1.mobile.value.trim();
+    
+            // تعريف التعابير النمطية (Regex)
+            const nameRegex = /^[a-zA-Z\u0600-\u06FF\s]{2,}$/; // اسم يحتوي على أحرف عربية/إنجليزية فقط (حرفين على الأقل)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // بريد إلكتروني صالح
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/; // 8 أحرف على الأقل تحتوي على حرف ورقم
+            const mobileRegex = /^(05|5|9665)\d{8}$/; // رقم جوال سعودي صالح
+    
+            // التحقق من الاسم الأول
+            if (!nameRegex.test(firstName)) {
+                alert("الرجاء إدخال اسم أول صحيح (أحرف فقط، حرفين على الأقل)");
+                document.form1.firstName.focus();
+                return false;
+            }
+    
+            // التحقق من الاسم الأخير
+            if (!nameRegex.test(lastName)) {
+                alert("الرجاء إدخال اسم أخير صحيح (أحرف فقط، حرفين على الأقل)");
+                document.form1.lastName.focus();
+                return false;
+            }
+    
+            // التحقق من البريد الإلكتروني
+            if (!emailRegex.test(email)) {
+                alert("الرجاء إدخال بريد إلكتروني صالح");
+                document.form1.email.focus();
+                return false;
+            }
+    
+            // التحقق من كلمة المرور
+            if (!passwordRegex.test(password)) {
+                alert("كلمة المرور يجب أن تحتوي على 8 أحرف على الأقل وتشمل حروفًا وأرقامًا");
+                document.form1.password.focus();
+                return false;
+            }
+    
+            // التحقق من العنوان
+            if (address.length < 5) {
+                alert("الرجاء إدخال عنوان صالح (5 أحرف على الأقل)");
+                document.form1.address.focus();
+                return false;
+            }
+    
+            // التحقق من رقم الجوال
+            if (!mobileRegex.test(mobile)) {
+                alert("الرجاء إدخال رقم جوال سعودي صالح (يبدأ بـ 05 أو 5 أو 9665)");
+                document.form1.mobile.focus();
+                return false;
+            }
+    
+            // إذا كانت جميع البيانات صحيحة
+            const confirmation = confirm("تم إدخال البيانات بشكل صحيح، هل تريد إرسال النموذج؟");
+            if (confirmation) {
+                return true; // يمكن إرسال النموذج
+            }
+            return false; // منع إرسال النموذج إذا لم يؤكد المستخدم
+        }
+    </script>
+
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <h2>MyOffers</h2>
+    </div>
+    <div class="account">
+        <i class='bx bxs-user'></i>
+        <a href="#account">My Account</a>
+
+
+    </div>
+    <div class="bx bx-menu active" id="menu-icon"></div>
+</header>
+
+<nav>
+    <ul class="navbar">
+        <li><a href="MyOffers.php">Home</a></li>
+        <li><a href="MyOffersdescription.php">Food</a></li>
+        <li><a href="#auto">Auto</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+<body>
+<div class="container">
+     <h2><em>Register</em></h2>
+     <form name="form1" onsubmit="submitForm(event)" method="POST" action="insertregeter.php">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile</label>
+            <input type="text" id="mobile" name="mobile" required>
+        </div>
+        <button type="submit">REGISTER</button>
+    </form>
+	</body>
+</div> <!-- content End -->
+
+<section id="contact">
+    <div class="footer">
+        <div class="main">
+            <div class="col">
+                <ul>
+                    <h4>Information</h4>
+                    <li><a href="https://www.example.com/faq">FAQ</a></li>
+                    <li><a href="https://www.example.com/about">About Us</a></li>
+                    <li><a href="https://www.example.com/terms">Terms & Conditions</a></li>
+                    <li><a href="https://www.example.com/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h4>Our Service Area</h4>
+                <ul>
+                    <li><a href="https://maps.app.goo.gl/TwiquH1CKWSYRPwy9">Taif</a></li>
+                    <li><a href="https://maps.app.goo.gl/bnE7dLH98ZDMSxVg9">Riyadh</a></li>
+                    <li><a href="https://maps.app.goo.gl/fKzcXyV3VC3wZ6Qo9">Makkah</a></li>
+                    <li><a href="https://maps.app.goo.gl/GMVBNQ2RKkFsq5oU7">Jeddah</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h4>Contact Us</h4>
+                <div class="social">
+                    <a href="https://web.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
+                    <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
+                    <a href="https://x.com/?lang=en"><i class='bx bxl-twitter'></i></a>
+                    <a href="https://www.snapchat.com/"><i class='bx bxl-snapchat'></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+ <script src="MyOffers.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyOffers Website</title>
+    <link rel="stylesheet" href="MyOffers.css">
+    <link rel="stylesheet" href="MyOffersRegester.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+  
+  
+    <!--////////////////////////////////////////-->
+
+
+
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <h2>MyOffers</h2>
+    </div>
+    <div class="account">
+        <i class='bx bxs-user'></i>
+        <a href="MyOffersRegester.html">My Account</a>
+        <a href="MyOffersCreateOffer.html">add offer</a>
+
+    </div>
+    <div class="bx bx-menu active" id="menu-icon"></div>
+</header>
+
+ <nav>
+            <ul class="navbar">
+              <li><a href="#home">Home</a></li>
+              <li><a href="MyOffersdescription.php">Food</a></li>
+              <li><a href="#auto">Auto</a></li>           
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+<body>
+<div class="container">
+    <h2><em>create Offer</em></h2>
+    <div class="main">
+        <form action="insert.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="Title">عنوان العرض:</label>
+                <input type="text" id="Title" name="Title" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="image">صورة العرض:</label>
+                <input type="file" id="image" name="image" class="form-control" accept="image/*" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="Description">وصف العرض:</label>
+                <textarea id="Description" name="Description" class="form-control" rows="3" required></textarea>
+            </div>
+        
+            <div class="form-group">
+                <label for="org_price">السعر الأصلي (ريال سعودي):</label>
+                <input type="number" id="org_price" name="org_price" class="form-control" step="0.01" min="0" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="Discount">نسبة الخصم (%):</label>
+                <input type="number" id="Discount" name="Discount" class="form-control" min="0" max="100" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="cat_id">اختر الفئة:</label>
+                <select id="cat_id" name="cat_id" class="form-control" required>
+                    <option value="">-- اختر الفئة --</option>
+                    <option value="1">Food</option>
+                    <option value="2">Auto</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label for="Quantity">الكمية المتاحة:</label>
+                <input type="number" id="Quantity" name="Quantity" class="form-control" min="1" required>
+            </div>
+            
+            <button type="submit" name="upload" class="btn btn-primary">إنشاء عرض جديد</button>
+            
+            <div class="mt-3">
+                <a href="MyOffers.php" class="btn btn-secondary">عرض جميع المنتجات</a>
+            </div>
+        </form>
+    </div>
+	</body>
+</div>
+<section id="contact">
+    <div class="footer">
+        <div class="main">
+            <div class="col">
+                <ul>
+                    <h4>Information</h4>
+                    <li><a href="https://www.example.com/faq">FAQ</a></li>
+                    <li><a href="https://www.example.com/about">About Us</a></li>
+                    <li><a href="https://www.example.com/terms">Terms & Conditions</a></li>
+                    <li><a href="https://www.example.com/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h4>Our Service Area</h4>
+                <ul>
+                    <li><a href="https://maps.app.goo.gl/TwiquH1CKWSYRPwy9">Taif</a></li>
+                    <li><a href="https://maps.app.goo.gl/bnE7dLH98ZDMSxVg9">Riyadh</a></li>
+                    <li><a href="https://maps.app.goo.gl/fKzcXyV3VC3wZ6Qo9">Makkah</a></li>
+                    <li><a href="https://maps.app.goo.gl/GMVBNQ2RKkFsq5oU7">Jeddah</a></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h4>Contact Us</h4>
+                <div class="social">
+                    <a href="https://web.whatsapp.com/"><i class='bx bxl-whatsapp'></i></a>
+                    <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
+                    <a href="https://x.com/?lang=en"><i class='bx bxl-twitter'></i></a>
+                    <a href="https://www.snapchat.com/"><i class='bx bxl-snapchat'></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="MyOffers.js"></script>
+</body>
+</html>

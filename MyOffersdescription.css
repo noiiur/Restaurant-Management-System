@@ -1,0 +1,407 @@
+/* MyOffers.css - متابعة لنفس نمط MyOffersRegester.css */
+
+/* إبقاء كل التنسيقات الأساسية كما هي */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+}
+
+:root {
+    --main-color: #de252a;
+    --text-color: #000000;
+    --bg-color: #fffae8;
+    --dark-bg-color: #18150d;
+    --bg-font: 5rem;
+    --h2-font: 2.25rem;
+    --p-font: 0.9rem;
+}
+
+*::selection {
+    background: var(--main-color);
+    color: #fff;
+}
+
+body {
+    color: var(--text-color);
+    background: var(--bg-color);
+}
+
+/* Header Styles - نفس التنسيق */
+header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: var(--main-color);
+}
+
+.logo {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 2.4rem;
+    margin-right: 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    width: 390px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 5px;
+    font-size: 1rem;
+    color: #333;
+    background: none;
+}
+
+.search-box i {
+    color: #8f0d18;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.account {
+    margin-left: auto;
+    text-align: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-direction: column;
+}
+
+.account i {
+    font-size: 2rem;
+    margin-right: 5px;
+    color: var(--text-color);
+}
+
+.account a {
+    display: block;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1px 10px;
+    transition: 0.3s;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.account:hover i,
+.account:hover a {
+    color: #8f0d18;
+}
+
+nav {
+    background-color: var(--main-color);
+    padding: 5px 15px;
+    width: 100%;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.navbar a {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    color: #8f0d18;
+    transition: color 0.3s ease-in-out;
+}
+
+#menu-icon {
+    font-size: 2rem;
+    cursor: pointer;
+    display: none;
+}
+
+/* Main Content Styles - نفس التنسيق */
+.home {
+    width: 100%;
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+    align-items: center;
+}
+
+.home-img img {
+    max-width: 100%;
+    width: 290px;
+    height: auto;
+}
+
+.home-text h1 {
+    font-size: var(--bg-font);
+    color: #416125;
+}
+
+.home-text h2 {
+    font-size: var(--h2-font);
+    margin: 1rem 0 2rem;
+    color: #719657;
+}
+
+/* تنسيقات قسم العروض الجديدة */
+.offers {
+    padding: 80px 40px 40px;
+    text-align: center;
+}
+
+.offers h2 {
+    font-size: var(--h2-font);
+    color: #416125;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.offers h2::before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 50px;
+    left: 50%;
+    bottom: -8px;
+    background: var(--main-color);
+    transform: translateX(-50%);
+}
+
+.offer-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.offer-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.offer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.offer-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.offer-content {
+    padding: 20px;
+}
+
+.offer-category {
+    color: var(--main-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.offer-title {
+    font-size: 1.2rem;
+    color: #416125;
+    margin-bottom: 10px;
+}
+
+.offer-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.offer-rating {
+    color: #ffc107;
+    margin-bottom: 15px;
+}
+
+.offer-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.simple-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.discounted-price {
+    font-weight: bold;
+    color: var(--main-color);
+    font-size: 1.2rem;
+}
+
+.discount {
+    background-color: var(--main-color);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.offer-link {
+    display: block;
+    background-color: var(--main-color);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.offer-link:hover {
+    background-color: #8f0d18;
+    color: white;
+}
+
+/* Footer - نفس التنسيق */
+.footer {
+    background-color: var(--dark-bg-color);
+    color: white;
+    padding: 50px 0 20px;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.col {
+    width: 25%;
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+.col h4 {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.col h4::before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 50px;
+    left: 0;
+    bottom: -8px;
+    background: white;
+}
+
+.col ul li:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.col ul li a {
+    color: #ccc;
+    font-size: 1.1rem;
+    display: block;
+    text-transform: capitalize;
+    transition: 0.4s;
+}
+
+.col ul li a:hover {
+    color: white;
+    transform: translateX(12px);
+}
+
+.col .social {
+    width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.col .social a {
+    height: 40px;
+    width: 40px;
+    background: white;
+    color: var(--main-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+.col .social a:hover {
+    transform: scale(1.2);
+    color: white;
+    background: var(--main-color);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .offer-cards {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .offer-cards {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .col {
+        width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .offer-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .col {
+        width: 100%;
+    }
+}
